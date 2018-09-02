@@ -1,4 +1,6 @@
-# CN_Assignment
+Github repo for Computer Network assignment 1.
+#### Current version - 0.0.3
+
 ## Installation
 * Install Python 3.7.0 and add it to PATH
 
@@ -10,16 +12,14 @@
 ## Known Bugs
 * Doesn't currently do anything we need it to do
 
-### Changelog
+## Changelog
 
-## V0.0.1
+### V0.0.1
 * Made and initiated README, repo
 
-## V0.0.2
+### V0.0.2
 * First implementation of socket over UDP in python
 
-## V0.0.3
+### V0.0.3
 * Added a client listener
 
-
-#### Current version - 0.0.3
