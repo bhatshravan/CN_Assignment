@@ -13,13 +13,12 @@ Github repo for Computer Network assignment 1.
 * Doesn't currently do anything we need it to do
 
 ## Changelog
-
-### V0.0.1
-* Made and initiated README, repo
+### V0.0.3
+* Added a client listener
 
 ### V0.0.2
 * First implementation of socket over UDP in python
 
-### V0.0.3
-* Added a client listener
+### V0.0.1
+* Made and initiated README, repo
 
