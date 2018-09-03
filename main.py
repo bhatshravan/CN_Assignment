@@ -3,7 +3,8 @@ import socket
 import sys
 import getopt
 import argparse
-import signal
+import threading
+import time
 
 
 #Initialize all global variables
@@ -12,10 +13,14 @@ global my_node_no
 global connected_peers
 global my_key
 
+base_port = 50000
+UDP_IP = "127.0.0.1"
+
+
 #Start all functions
 def send():
-   UDP_IP = "127.0.0.1"
-   UDP_PORT = 6789
+   time.sleep(5)
+   UDP_PORT = base_port+int(my_node_no)
    MESSAGE = "Hello, World!"
 
    print("UDP target IP:{0}".format(UDP_IP))
@@ -28,6 +33,18 @@ def send():
 
    sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM) # UDP
    sock.sendto(bytes(MESSAGE,"UTF-8"), (UDP_IP, UDP_PORT))
+
+def recieve():
+
+   UDP_PORT = base_port+int(my_node_no)
+
+   serverSock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+   serverSock.bind((UDP_IP, UDP_PORT))
+
+   print("Started listener")
+   while True:
+       data, addr = serverSock.recvfrom(1024)
+       print("Recieved data: {0}".format(data.decode('utf-8')))
 
 
 def init():
@@ -50,4 +67,6 @@ def init():
 
 if __name__ == "__main__":
    init()
-   send()
+   threading.Thread( target=recieve ).start()
+   threading.Thread( target=send ).start()
+   
