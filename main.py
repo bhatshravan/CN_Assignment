@@ -23,16 +23,10 @@ def send():
    UDP_PORT = base_port+int(my_node_no)
    MESSAGE = "Hello, World!"
 
-   print("UDP target IP:{0}".format(UDP_IP))
-   print("UDP target port:{0}".format(UDP_PORT))
-   print("message:{0}".format(MESSAGE))
-
-   print("Cuurent node:{0}".format(args['i']))
-   print("Connected node:{0}".format(args['n']))
-   print("Key value:{0}".format(args['s']))
 
    sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM) # UDP
    sock.sendto(bytes(MESSAGE,"UTF-8"), (UDP_IP, UDP_PORT))
+
 
 def recieve():
 
@@ -63,6 +57,11 @@ def init():
    my_node_no = args['i']
    connected_peers = args['n']
    my_key = args['s']
+
+   print("All values initiated")
+   print("Current node:{0}".format(args['i']))
+   print("Connected node:{0}".format(args['n']))
+   print("Key value:{0}\n\n--------".format(args['s']))
 
 
 if __name__ == "__main__":
