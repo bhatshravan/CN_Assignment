@@ -1,7 +1,6 @@
 #Import all functions
 import socket
 import sys
-import getopt
 import argparse
 import threading
 import time
