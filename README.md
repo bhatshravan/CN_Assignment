@@ -5,9 +5,7 @@ Github repo for Computer Network assignment 1.
 * Install Python 3.7.0 and add it to PATH
 
 ## Usage
-1. python client.py
-2. python main.py
-
+python main.py -i 10 -n 10,20 -s 18
 
 ## Known Bugs
 * Doesn't currently do anything we need it to do
