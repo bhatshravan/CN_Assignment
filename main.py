@@ -33,10 +33,10 @@ def send():
       exited = True
    UDP_PORT = base_port+int(my_node_no)
    #key = str(5)
-   MESSAGE = "R;;"+str(my_node_no)+";;"+str(datetime.now().time())+";;"+key+";;"
+   MESSAGE = "R;;"+str(my_node_no)+";;"+str(datetime.now().time())+";;"+key+";;value;;"
 
 
-   sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM) # UDP
+   sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM) #UDP
    
    for nodes in connected_peers:
       MESSAGE_SEND = (MESSAGE+str(nodes))
@@ -58,9 +58,21 @@ def recieve():
        data, addr = serverSock.recvfrom(1024)
 
        print("Recieved data: {0}".format(data.decode('utf-8')))
-       message = data.decode('utf-8').split(";;")
+       message1 = data.decode('utf-8')
+       message = message1.split(";;")
        if int(message[1]) == int(my_node_no):
            print("Got my node")
+           if message[4] == "value":
+           	print("Message not recieved")
+           else:
+           	print("Response is: {0}\n Path traversed is:\n{1}".format(message[4],message[5]))
+           	
+       else:
+           send_message = message1+" -> "+str(my_node_no)
+           sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM) #UDP
+           for nodes in connected_peers:
+      		MESSAGE_SEND = (MESSAGE+str(nodes))
+     		sock.sendto(bytes(MESSAGE_SEND,"UTF-8"), (UDP_IP, UDP_PORT))
 
 
 def init():
