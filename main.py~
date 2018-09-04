@@ -80,8 +80,7 @@ def init():
    args = vars(parser.parse_args())
 
    my_node_no = args['i']
-   connected_peers1 = str(args['n'])
-   connected_peers = connected_peers1.split(",")
+   connected_peers = list(args['n'])
    my_key = args['s']
    
 
