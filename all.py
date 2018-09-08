@@ -67,10 +67,9 @@ def send():
 			MESSAGE_SEND2 = (MESSAGE+""+str(my_node_no)+" -> ")
 			send_port = base_port+int(nodes)
 
-			if int(nodes) > int(my_node_no):
-				print("Message sent to {0}".format(send_port))
-				sock.sendto(bytes(MESSAGE_SEND2,"UTF-8"), (UDP_IP, send_port))
-				break
+			
+			print("Message sent to {0}".format(send_port))
+			sock.sendto(bytes(MESSAGE_SEND2,"UTF-8"), (UDP_IP, send_port))
 
 		time.sleep(5)
 		if sent_datas != " ":
