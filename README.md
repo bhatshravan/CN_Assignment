@@ -1,5 +1,4 @@
 Github repo for Computer Network assignment 1.
-#### Current version - 0.0.3
 
 
 ## Installation
