@@ -4,7 +4,6 @@ import sys
 import argparse
 import threading
 import time
-import timeouts
 import multiprocessing
 from datetime import datetime
 
@@ -58,8 +57,7 @@ def send():
 		current_time=str(time.time())
 		MESSAGE = "R;;"+str(my_node_no)+";;"+current_time+";;"+key+";; value ;;"
 		sent_datas=str(my_node_no)+current_time
-		now_sent = True
-		wait_to_recieve = True
+
 
 		sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM) #UDP
 		
@@ -70,36 +68,18 @@ def send():
 			
 			print("Message sent to {0}".format(send_port))
 			sock.sendto(bytes(MESSAGE_SEND2,"UTF-8"), (UDP_IP, send_port))
+				
 
 		time.sleep(5)
 		if sent_datas != " ":
 			print("No message recieved")
 			already_parsed.add(sent_datas)
 					
-		"""
-		p = multiprocessing.Process(target=bar)
-		p.start()
 
-	 # Wait for 10 seconds or until process finishes
-		p.join(3)
-	
-	 # If thread is still active
-		if p.is_alive():
-			print("joined")
-			now_sent = False
-			p.terminate()
-			p.join()
-			if sent_datas != " ":
-				print("No message recieved")
-				already_parsed.add(sent_datas)
-		"""
-		#time.sleep(5)
 
 
 def recieve():
 
-	global wait_to_recieve
-	wait_to_recieve2 = 0
 	
 	global sent_datas
 	global already_parsed
@@ -121,13 +101,12 @@ def recieve():
 		#print("Recieved data: {0}".format(data.decode('utf-8')))
 		message1 = data.decode('utf-8')
 		message = message1.split(";;")
-		message1 = message1+" -> "+str(my_node_no)
 		
-
 		timed_out = time.time() - float(message[2])
 
 		rec = str(message[1])+str(message[2])
 
+		
 		if rec not in already_parsed and timed_out<10:
 
 			if int(message[1]) == int(my_node_no):
@@ -141,6 +120,8 @@ def recieve():
 				sent_datas=" "
 
 			elif int(message[3]) == my_key:
+					message1 = message1+str(my_node_no)+" -> "
+		
 					message1.replace('value',str(my_key*my_key))
 					message1.replace("R",str(my_node_no))
 					send_message = message1+"\nResponse : " +str(my_key*my_key)
@@ -153,8 +134,10 @@ def recieve():
 
 
 			else:
-				#print("Sending")
+				message1 = message1+str(my_node_no)+" -> "
+		
 				#Prepare message sending
+				
 				send_message = message1
 				
 				set_add = rec
