@@ -79,7 +79,7 @@ Message sent to 50005
 ----
 
 Got my node :
-['R', '1', '1536584337.5082974', '40', ' value ', '1 -> 5 -> 99 -> \nResponse : 1600']
+['R', '1', '1536584337.5082974', '40', ' value ', '1 -> 5 -> 9 -> 1 \nResponse : 1600']
 
 Path traversed is:
 
