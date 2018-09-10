@@ -58,8 +58,11 @@ After all nodes are initialized, using terminal 1-
 Output:
 
 All values initiated
+
 Current node:1
+
 Connected node:5,6
+
 Key value:10
 
 --------
@@ -69,6 +72,7 @@ Started listener
 
 ------
 Enter key to check value:40
+
 Message sent to 50005
 
 
@@ -78,13 +82,17 @@ Got my node :
 ['R', '1', '1536584337.5082974', '40', ' value ', '1 -> 5 -> 99 -> \nResponse : 1600']
 
 Path traversed is:
+
 1 -> 5 -> 9 -> 
+
 Response : 1600
 
 
 ------
 Enter key to check value:90
+
 Message sent to 50005
+
 No message recieved
 
 
