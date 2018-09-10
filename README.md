@@ -45,8 +45,11 @@ or else type python -h for help
 ### Input
 
 Terminal 1: python main.py -i 1 -n 5,6 -s 10
+
 Terminal 2: python main.py -i 5 -n 9,31 -s 20
+
 Terminal 3: python main.py -i 6 -n 5,9 -s 30
+
 Terminal 4: python main.py -i 9 -n 1,32 -s 40
 
 
