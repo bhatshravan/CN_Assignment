@@ -1,5 +1,17 @@
 Github repo for Computer Network assignment 1.
 
+## Info
+
+### Members:
+* Shravan Bhat - 1KS16CS092
+* Shashank Kavur - 1KS16CS090
+* Aravind K.L. - 1KS14CS019
+
+### Problem statement:
+Consider implementing a DHT with shortcuts having N peers. Each peer is provided with information about the peer knows. The implementation of keys is done using immediate successor. Each peer will run as a separate program. Each peer will ask for an input of key value for which it needs to obtain a response. The response should given as square of the key value.
+
+### Synopsis:
+This is a program to implement dhT using the concept of successive nodes in file main.py and send to all connected nodes in all.py.
 
 ## Installation
 * Install Python 3.7.0 and add it to PATH
@@ -28,26 +40,49 @@ or else type python -h for help
 * Adding timeouts 
 * Implementing the broadcast mechanism for successive nodes
 
-## Changelog
+## Sample run
 
-### V0.0.7
-* Update Readme.md
+### Input
 
-### V0.0.6
-* Addd function timeouts
+Terminal 1: python main.py -i 1 -n 5,6 -s 10
+Terminal 2: python main.py -i 5 -n 9,31 -s 20
+Terminal 3: python main.py -i 6 -n 5,9 -s 30
+Terminal 4: python main.py -i 9 -n 1,32 -s 40
 
-### V0.0.5
-* Optimize the program
 
-### V0.0.4
-* Added a proper sending function
+After all nodes are initialized, using terminal 1-
 
-### V0.0.3
-* Added a client listener
+Output:
 
-### V0.0.2
-* First implementation of socket over UDP in python
+All values initiated
+Current node:1
+Connected node:5,6
+Key value:10
 
-### V0.0.1
-* Made and initiated README, repo
+--------
+Started listener
+
+
+
+------
+Enter key to check value:40
+Message sent to 50005
+
+
+----
+
+Got my node :
+['R', '1', '1536584337.5082974', '40', ' value ', '1 -> 5 -> 99 -> \nResponse : 1600']
+
+Path traversed is:
+1 -> 5 -> 9 -> 
+Response : 1600
+
+
+------
+Enter key to check value:90
+Message sent to 50005
+No message recieved
+
+
 

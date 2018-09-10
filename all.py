@@ -65,9 +65,9 @@ def send():
 			MESSAGE_SEND2 = (MESSAGE+""+str(my_node_no)+" -> ")
 			send_port = base_port+int(nodes)
 
-			
 			print("Message sent to {0}".format(send_port))
 			sock.sendto(bytes(MESSAGE_SEND2,"UTF-8"), (UDP_IP, send_port))
+				
 				
 
 		time.sleep(5)
@@ -110,23 +110,22 @@ def recieve():
 		if rec not in already_parsed and timed_out<10:
 
 			if int(message[1]) == int(my_node_no):
-				print("\n\n----\n\nGot my node :\n{0}\n".format(message))
 				if "Response" not in message1:
 					print("Message not recieved")
 				else:
+					print("\n\n----\n\nGot my node :\n{0}\n".format(message))
 					print("Path traversed is:\n{0}".format(message[5]))
 
-				already_parsed.add(rec)
+					already_parsed.add(rec)
 				sent_datas=" "
 
 			elif int(message[3]) == my_key:
-					message1 = message1+str(my_node_no)+" -> "
+
+					message1 = message1+" -> "+str(message[1])
 		
 					message1.replace('value',str(my_key*my_key))
 					message1.replace("R",str(my_node_no))
 					send_message = message1+"\nResponse : " +str(my_key*my_key)
-					#print(send_message)
-					#print(message1)
 					sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 					send_port = base_port+int(message[1])
 					sock.sendto(bytes(send_message,"UTF-8"), (UDP_IP, send_port))
@@ -147,9 +146,11 @@ def recieve():
 				sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM) #UDP
 				for nodes in connected_peers:
 					if int(nodes) != int(message[1]):
+					
 						MESSAGE_SEND = (message1+str(nodes))
 						send_port = base_port+int(nodes)
 						sock.sendto(bytes(MESSAGE_SEND,"UTF-8"), (UDP_IP, send_port))
+						
 
 def bar():
 	for i in range(3):

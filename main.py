@@ -121,13 +121,12 @@ def recieve():
 				sent_datas=" "
 
 			elif int(message[3]) == my_key:
-					message1 = message1+str(my_node_no)+" -> "
+
+					message1 = message1+" -> "+str(message[1])
 		
 					message1.replace('value',str(my_key*my_key))
 					message1.replace("R",str(my_node_no))
 					send_message = message1+"\nResponse : " +str(my_key*my_key)
-					#print(send_message)
-					#print(message1)
 					sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 					send_port = base_port+int(message[1])
 					sock.sendto(bytes(send_message,"UTF-8"), (UDP_IP, send_port))
